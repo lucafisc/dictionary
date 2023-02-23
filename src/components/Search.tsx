@@ -20,10 +20,7 @@ export default function Search(props: SearchProps) {
         onChange={(e) => handleChange(e)}
         onKeyDown={handleKeyPress}
       />
-      <button
-        onClick={submitForm}
-        className="mr-2 w-14 h-14 bg-transparent mr-6"
-      >
+      <button onClick={submitForm} className="w-14 h-14 bg-transparent mr-6">
         <HiSearch className="w-full text-purple-500 text-2xl" />
       </button>
     </div>

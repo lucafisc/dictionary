@@ -28,7 +28,7 @@ export default function Word({ entry }: WordProps): JSX.Element {
   }
 
   return (
-    <div className="flex justify-between items-center mb-8">
+    <div className="flex justify-between items-center">
       <div className="flex flex-col items-start">
         <h1 className="text-3xl font-bold dark:text-white">{entry.word}</h1>
         <p className="text-purple-500">{entry.phonetic}</p>

@@ -2,7 +2,7 @@ import { Definition as DefinitionProps } from "../types/types";
 
 export default function Definition({ definition, example }: DefinitionProps) {
   return (
-    <>
+    <div className="w-full break-all">
       <ul className="list-disc marker:text-purple-500 pl-4 mb-3">
         <li className="dark:text-white text-left">{definition}</li>
       </ul>
@@ -11,6 +11,6 @@ export default function Definition({ definition, example }: DefinitionProps) {
           "{example}"
         </p>
       )}
-    </>
+    </div>
   );
 }

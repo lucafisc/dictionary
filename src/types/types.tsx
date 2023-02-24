@@ -14,4 +14,5 @@ export type Entry = {
   phonetic?: string;
   phonetics?: { audio: string }[];
   meanings: Meaning[];
-}
+  sourceUrls: string[];
+};

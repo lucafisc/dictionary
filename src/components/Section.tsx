@@ -15,17 +15,17 @@ export default function Section({ meaningItem }: SectionProps) {
   });
   return (
     <>
-      <div className="flex w-full items-center mb-4 mt-4">
-        <p className="italic text-lg dark:text-white pr-3">
+      <div className="flex w-full items-center mb-6 mt-6">
+        <p className="italic font-medium text-lg dark:text-white pr-3">
           {meaningItem.partOfSpeech}
         </p>
-        <hr className="h-px bg-gray-200 border-0 dark:bg-gray-100 grow"></hr>
+        <hr className="h-px opacity-50 bg-gray-200 border-0 dark:bg-gray-100 grow"></hr>
       </div>
-      <h2 className="dark:text-gray-500 text-left mb-2">Meaning</h2>
+      <h2 className="text-gray-500 text-left mb-2">Meaning</h2>
       {definitions}
       {meaningItem.synonyms[0] && (
-        <div className="flex flex-wrap">
-          <p className="dark:text-gray-500">Synonyms:</p> {synonyms}
+        <div className="flex flex-wrap mt-3 mb03">
+          <p className="text-gray-500">Synonyms</p> {synonyms}
         </div>
       )}
     </>

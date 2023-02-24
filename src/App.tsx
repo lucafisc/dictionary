@@ -3,12 +3,18 @@ import "./App.css";
 import Word from "./components/Word";
 import Search from "./components/Search";
 import Info from "./components/Info";
+import Source from "./components/Source";
+import Header from "./components/Header";
 import { Entry } from "./types/types";
 import { fetchObj } from "./modules/fetchObj";
 
 function App() {
   const [entry, setEntry] = useState<Entry>();
   const [search, setSearch] = useState("");
+  const [fontType, setFontType] = useState(localStorage.getItem('font-type') ?? "font-sans")
+  const [darkMode, setDarkMode] = useState(
+    localStorage.theme === "dark" ? true : false
+  );
 
   const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === "Enter") {
@@ -25,9 +31,20 @@ function App() {
     setSearch(e.currentTarget.value);
   };
 
+  useEffect(() => {
+    if (darkMode) {
+      localStorage.theme = "dark";
+      document.documentElement.classList.add("dark");
+    } else {
+      localStorage.theme = "light";
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
   return (
-    <div className="App bg-white dark:bg-black">
-      <div className="p-3 mx-auto max-w-screen-md">
+    <div className={`${fontType} App bg-white dark:bg-black min-h-screen min-h-screen`}>
+      <div className="p-5 mx-auto max-w-screen-md">
+        <Header darkMode={darkMode} setDarkMode={setDarkMode} fontType={fontType} setFontType={setFontType}/>
         <Search
           search={search}
           handleChange={handleChange}
@@ -38,6 +55,7 @@ function App() {
           <>
             <Word entry={entry} />
             <Info entry={entry} />
+            <Source sourceUrls={entry.sourceUrls} />
           </>
         )}
       </div>

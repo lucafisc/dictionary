@@ -1,5 +1,5 @@
 import { BiPlay } from "react-icons/bi";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Entry } from "../types/types";
 
 type WordProps = {
@@ -30,17 +30,19 @@ export default function Word({ entry }: WordProps): JSX.Element {
   return (
     <div className="flex justify-between items-center">
       <div className="flex flex-col items-start">
-        <h1 className="text-3xl font-bold dark:text-white">{entry.word}</h1>
-        <p className="text-purple-500">{entry.phonetic}</p>
+        <h1 className="text-4xl mb-1 font-bold dark:text-white">
+          {entry.word}
+        </h1>
+        <p className="font-bold text-purple-500">{entry.phonetic}</p>
       </div>
       <button
         onClick={handleClick}
-        className={`w-12 h-12 bg-purple-300 text-purple-500 dark:bg-purple-500 dark:text-purple-300 rounded-full flex items-center justify-center ${
-          !audio ? " dark:bg-gray-800 cursor-not-allowed" : ""
+        className={`dark:bg-opacity-30 w-12 h-12  text-purple-500  dark:text-purple-500 bg-opacity-50 rounded-full flex items-center justify-center ${
+          !audio ? "bg-gray-400 dark:bg-gray-500 cursor-not-allowed" : "dark:bg-purple-500 bg-purple-300"
         }`}
         disabled={!audio}
       >
-        <BiPlay className={`text-3xl ${!audio ? "text-gray-400" : ""}`} />
+        <BiPlay className={`text-3xl ${!audio ? "text-gray-50 dark:text-gray-400" : ""}`} />
       </button>
     </div>
   );

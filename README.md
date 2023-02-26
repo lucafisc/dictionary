@@ -1,5 +1,5 @@
 <p align="center">
-<h1 align="center">Welcome to the Dictionary 👋 🧠</h1>
+<h1 align="center">Welcome to the Dictionary 👋📚</h1>
 </p>
 
 

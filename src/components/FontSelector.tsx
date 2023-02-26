@@ -15,13 +15,14 @@ export default function FontSelector({
 
 	const toggleMenu = () => {
 	  setIsMenuVisible((prevState) => !prevState);
-	  console.log(isMenuVisible)
 	};
 	const ref = useDetectClickOutside({ onTriggered: () =>  setIsMenuVisible(false)});
 
 	const handleClick = (font : string) => {
 		setFontType(font);
 		setIsMenuVisible(false);
+		localStorage.fontType = font;
+
 	  };
 
   return (

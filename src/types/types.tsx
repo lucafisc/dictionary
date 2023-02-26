@@ -16,3 +16,9 @@ export type Entry = {
   meanings: Meaning[];
   sourceUrls: string[];
 };
+
+export type ErrorObj = {
+	title?: string;
+	message?: string;
+	resolution?: string;
+}

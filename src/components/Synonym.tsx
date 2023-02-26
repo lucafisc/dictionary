@@ -5,7 +5,7 @@ type SynonymProps = {
 export default function Definition({ synonym }: SynonymProps) {
   return (
     <>
-      <p className="pl-3 font-bold text-purple-500">{synonym}</p>
+      <p className="md:text-xl pl-3 font-bold text-purple-500">{synonym}</p>
     </>
   );
 }

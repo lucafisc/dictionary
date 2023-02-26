@@ -8,7 +8,7 @@
 </p>
 
 
-> A dictionary built using React and Typescript
+> A dictionary built using React, Typescript and Tailwind CSS
 > 
 > ### 🏠 [Demo link](https://lucafisc.github.io/dictionary/)
 

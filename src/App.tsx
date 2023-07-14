@@ -8,8 +8,46 @@ import Header from "./components/Header";
 import { Entry, ErrorObj } from "./types/types";
 import { fetchObj } from "./modules/fetchObj";
 import ErrorPage from "./components/ErrorPage";
+// Import the functions you need from the SDKs you need
+import {initializeApp} from "firebase/app";
+import { getAuth, signInWithPopup, GoogleAuthProvider} from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { FirebaseConfig } from "./FirebaseConfig";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+
+// Initialize Firebase
+const firebaseApp = initializeApp(FirebaseConfig);
+
+const auth = getAuth(firebaseApp);
+
+function SignIn() {
+
+	const signInWithGoogle = () => {
+	  const provider = new GoogleAuthProvider();
+	  signInWithPopup(auth, provider);
+	}
+  
+	return (
+	  <>
+		<button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
+		<p>Do not violate the community guidelines or you will be banned for life!</p>
+	  </>
+	)
+  
+  }
+
+  function SignOut() {
+	return auth.currentUser && (
+	  <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
+	)
+  }
+  
 function App() {
+
+	const [user] = useAuthState(auth);	
   const [entry, setEntry] = useState<Entry>();
   const [search, setSearch] = useState("");
   const [fontType, setFontType] = useState(localStorage.getItem('fontType') ?? "font-sans")
@@ -47,7 +85,8 @@ function App() {
     <div className={`${fontType} App bg-white dark:bg-black min-h-screen`}>
       <div className="p-5 mx-auto max-w-screen-md">
         <Header darkMode={darkMode} setDarkMode={setDarkMode} fontType={fontType} setFontType={setFontType}/>
-        <Search
+        {user ? <SignOut/> : <SignIn/>}
+		<Search
           search={search}
           handleChange={handleChange}
           handleKeyPress={handleKeyPress}

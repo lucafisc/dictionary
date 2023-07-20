@@ -9,6 +9,7 @@ import { Entry, ErrorObj } from "./types/types";
 import { fetchObj } from "./modules/fetchObj";
 import ErrorPage from "./components/ErrorPage";
 
+
 function App() {
   const [entry, setEntry] = useState<Entry>();
   const [search, setSearch] = useState("");

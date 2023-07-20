@@ -11,7 +11,7 @@ import ErrorPage from "./components/ErrorPage";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { firebaseConfig } from "./firebaseConfig";
-
+var firebase = require('firebase/app');
 var firebaseui = require("firebaseui");
 
 const app = initializeApp(firebaseConfig);
@@ -19,7 +19,10 @@ const auth = getAuth(app);
 var ui = new firebaseui.auth.AuthUI(auth);
 ui.start('#firebaseui-auth-container', {
 	signInOptions: [
-	  auth.EmailAuthProvider.PROVIDER_ID
+	  {
+		provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+		signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD
+	  }
 	],
 	// Other config options...
   });

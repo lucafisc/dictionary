@@ -11,26 +11,35 @@ import ErrorPage from "./components/ErrorPage";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { firebaseConfig } from "./firebaseConfig";
-var firebase = require('firebase/app');
+var firebase = require("firebase/app");
 var firebaseui = require("firebaseui");
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-var ui = new firebaseui.auth.AuthUI(auth);
-ui.start('#firebaseui-auth-container', {
-	signInOptions: [
-	  {
-		provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-		signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD
-	  }
-	],
-	// Other config options...
-  });
+// var ui = new firebaseui.auth.AuthUI(auth);
+// ui.start("#firebaseui-auth-container", {
+//   signInOptions: [
+//     {
+//       provider: [
+//         firebase.auth.EmailAuthProvider.PROVIDER_ID,
+//         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+// 		firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+// 		firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+// 		firebase.auth.AppleAuthProvider.PROVIDER_ID,
+// 		firebase.auth.AnonymousAuthProvider.PROVIDER_ID,
+//       ],
+//       signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+//     },
+//   ],
+//   // Other config options...
+// });
 
 function App() {
   const [entry, setEntry] = useState<Entry>();
   const [search, setSearch] = useState("");
-  const [fontType, setFontType] = useState(localStorage.getItem('fontType') ?? "font-sans")
+  const [fontType, setFontType] = useState(
+    localStorage.getItem("fontType") ?? "font-sans"
+  );
   const [darkMode, setDarkMode] = useState(
     localStorage.theme === "dark" ? true : false
   );
@@ -64,7 +73,12 @@ function App() {
   return (
     <div className={`${fontType} App bg-white dark:bg-black min-h-screen`}>
       <div className="p-5 mx-auto max-w-screen-md">
-        <Header darkMode={darkMode} setDarkMode={setDarkMode} fontType={fontType} setFontType={setFontType}/>
+        <Header
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          fontType={fontType}
+          setFontType={setFontType}
+        />
         <Search
           search={search}
           handleChange={handleChange}
@@ -78,9 +92,9 @@ function App() {
             <Source sourceUrls={entry.sourceUrls} />
           </>
         )}
-		 {entryError?.title && (
+        {entryError?.title && (
           <>
-            <ErrorPage err={entryError}/>
+            <ErrorPage err={entryError} />
           </>
         )}
       </div>

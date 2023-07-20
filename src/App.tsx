@@ -8,7 +8,21 @@ import Header from "./components/Header";
 import { Entry, ErrorObj } from "./types/types";
 import { fetchObj } from "./modules/fetchObj";
 import ErrorPage from "./components/ErrorPage";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { firebaseConfig } from "./firebaseConfig";
 
+var firebaseui = require("firebaseui");
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+var ui = new firebaseui.auth.AuthUI(auth);
+ui.start('#firebaseui-auth-container', {
+	signInOptions: [
+	  auth.EmailAuthProvider.PROVIDER_ID
+	],
+	// Other config options...
+  });
 
 function App() {
   const [entry, setEntry] = useState<Entry>();

@@ -26,7 +26,7 @@ export default function FontSelector({
 	  };
 
   return (
-<div ref={ref} className="relative ml-auto mr-4">
+<div ref={ref} className=" mr-4">
 <button onClick={toggleMenu} data-dropdown-toggle="dropdownDefaultRadio" className="mb-2 text-gray-500 dark:text-white dark:bg-gray-800  bg-gray-50 hover:text-white hover:bg-purple-500 dark:hover:bg-purple-500 focus:outline-none focus:ring-0 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button"><BiEditAlt/><svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7"></path></svg></button>
 <div className={`${isMenuVisible ? "" : "hidden"} absolute z-10 w-30 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600`}>
     <ul className="text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioButton">

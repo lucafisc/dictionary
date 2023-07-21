@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 type SynonymProps = {
   synonym: string;
 };
@@ -5,7 +7,9 @@ type SynonymProps = {
 export default function Definition({ synonym }: SynonymProps) {
   return (
     <>
-      <p className="md:text-xl pl-3 font-bold text-purple-500">{synonym}</p>
+      <Link to={"/definition/" + synonym}>
+        <p className="md:text-xl pl-2 pr-2 font-bold text-purple-500 hover:bg-purple-500 hover:text-white active:bg-purple-600 active:text-white transition-all rounded-lg">{synonym}</p>
+      </Link>
     </>
   );
 }

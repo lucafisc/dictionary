@@ -1,20 +1,25 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
-import Word from "./components/Word";
 import Search from "./components/Search";
-import Info from "./components/Info";
-import Source from "./components/Source";
+import WordPage from "./components/WordPage";
 import Header from "./components/Header";
-import { Entry, ErrorObj } from "./types/types";
-import { fetchObj } from "./modules/fetchObj";
 import ErrorPage from "./components/ErrorPage";
-// Import the functions you need from the SDKs you need
-import {initializeApp} from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider} from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import SignInOut from "./components/SignInOut";
+import FavoriteWordsList from "./components/FavoriteWordsList";
 import { FirebaseConfig } from "./FirebaseConfig";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getFirestore, collection } from "firebase/firestore";
+
+// Initialize Firebase
+const firebaseApp = initializeApp(FirebaseConfig);
+
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
+
+const BlankComponent = () => null;
 
 // Your web app's Firebase configuration
 
@@ -46,15 +51,14 @@ function SignIn() {
   }
   
 function App() {
-
-	const [user] = useAuthState(auth);	
-  const [entry, setEntry] = useState<Entry>();
+  const [user] = useAuthState(auth);
   const [search, setSearch] = useState("");
-  const [fontType, setFontType] = useState(localStorage.getItem('fontType') ?? "font-sans")
+  const [fontType, setFontType] = useState(
+    localStorage.getItem("fontType") ?? "font-sans"
+  );
   const [darkMode, setDarkMode] = useState(
     localStorage.theme === "dark" ? true : false
   );
-  const [entryError, setEntryError] = useState<ErrorObj>();
 
   const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === "Enter") {
@@ -62,9 +66,9 @@ function App() {
     }
   };
 
+  const navigate = useNavigate();
   const submitForm = () => {
-    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${search}`;
-    fetchObj(url, setEntry, setEntryError);
+    navigate(`/definition/${search}`);
   };
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -84,26 +88,37 @@ function App() {
   return (
     <div className={`${fontType} App bg-white dark:bg-black min-h-screen`}>
       <div className="p-5 mx-auto max-w-screen-md">
-        <Header darkMode={darkMode} setDarkMode={setDarkMode} fontType={fontType} setFontType={setFontType}/>
-        {user ? <SignOut/> : <SignIn/>}
-		<Search
+        <Header
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          fontType={fontType}
+          setFontType={setFontType}
+          user={user}
+          auth={auth}
+        />
+        <Search
           search={search}
           handleChange={handleChange}
           handleKeyPress={handleKeyPress}
           submitForm={submitForm}
         />
-        {entry && !entryError?.title && (
-          <>
-            <Word entry={entry} />
-            <Info entry={entry} />
-            <Source sourceUrls={entry.sourceUrls} />
-          </>
-        )}
-		 {entryError?.title && (
-          <>
-            <ErrorPage err={entryError}/>
-          </>
-        )}
+        <Routes>
+          <Route path="/" element={<BlankComponent />} />
+          <Route
+            path="/definition/:search"
+            element={<WordPage setSearch={setSearch} auth={auth} db={db} />}
+          />
+          <Route path="/error" element={<ErrorPage />} />
+          <Route
+            path="/signin"
+            element={<SignInOut user={user} auth={auth} />}
+          />
+          <Route
+            path="/favorites"
+            element={<FavoriteWordsList auth={auth} db={db} />}
+          />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
       </div>
     </div>
   );

@@ -11,7 +11,8 @@
     "@types/node": "^16.18.12",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "firebase": "^10.0.0",
+    "firebase": "^9.23.0",
+    "firebaseui": "^6.0.2",
     "react": "^18.2.0",
     "react-click-outside": "github:tj/react-click-outside",
     "react-detect-click-outside": "^1.1.7",
@@ -19,6 +20,8 @@
     "react-firebase-hooks": "^5.1.1",
     "react-icons": "^4.7.1",
     "react-outside-click-handler": "^1.3.0",
+    "react-router": "^6.14.2",
+    "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "uuid": "^9.0.0",
@@ -51,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
     "gh-pages": "^5.0.0",
     "tailwindcss": "^3.2.7"
   }

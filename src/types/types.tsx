@@ -18,7 +18,5 @@ export type Entry = {
 };
 
 export type ErrorObj = {
-	title?: string;
-	message?: string;
-	resolution?: string;
+	error: boolean;
 }

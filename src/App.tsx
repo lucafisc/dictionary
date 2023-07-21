@@ -5,10 +5,24 @@ import Search from "./components/Search";
 import WordPage from "./components/WordPage";
 import Header from "./components/Header";
 import ErrorPage from "./components/ErrorPage";
+import SignInOut from "./components/SignInOut";
+import FavoriteWordsList from "./components/FavoriteWordsList";
+import { FirebaseConfig } from "./FirebaseConfig";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getFirestore, collection } from "firebase/firestore";
+
+// Initialize Firebase
+const firebaseApp = initializeApp(FirebaseConfig);
+
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
 
 const BlankComponent = () => null;
 
 function App() {
+  const [user] = useAuthState(auth);
   const [search, setSearch] = useState("");
   const [fontType, setFontType] = useState(
     localStorage.getItem("fontType") ?? "font-sans"
@@ -50,6 +64,8 @@ function App() {
           setDarkMode={setDarkMode}
           fontType={fontType}
           setFontType={setFontType}
+          user={user}
+          auth={auth}
         />
         <Search
           search={search}
@@ -57,10 +73,21 @@ function App() {
           handleKeyPress={handleKeyPress}
           submitForm={submitForm}
         />
-			  <Routes>
-		<Route path="/" element={<BlankComponent />} />
-          <Route path="/definition/:search" element={<WordPage setSearch={setSearch} />} />
+        <Routes>
+          <Route path="/" element={<BlankComponent />} />
+          <Route
+            path="/definition/:search"
+            element={<WordPage setSearch={setSearch} auth={auth} db={db} />}
+          />
           <Route path="/error" element={<ErrorPage />} />
+          <Route
+            path="/signin"
+            element={<SignInOut user={user} auth={auth} />}
+          />
+          <Route
+            path="/favorites"
+            element={<FavoriteWordsList auth={auth} db={db} />}
+          />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>

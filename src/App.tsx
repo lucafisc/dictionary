@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import Search from "./components/Search";
 import WordPage from "./components/WordPage";
 import Header from "./components/Header";
 import ErrorPage from "./components/ErrorPage";
+
+const BlankComponent = () => null;
 
 function App() {
   const [search, setSearch] = useState("");
@@ -59,15 +57,11 @@ function App() {
           handleKeyPress={handleKeyPress}
           submitForm={submitForm}
         />
-        <Routes>
-          <Route
-            path="/definition/:search"
-            element={
-              <WordPage
-              />
-            }
-				  />
-		 <Route path="/error" element={<ErrorPage />} />
+			  <Routes>
+		<Route path="/" element={<BlankComponent />} />
+          <Route path="/definition/:search" element={<WordPage setSearch={setSearch} />} />
+          <Route path="/error" element={<ErrorPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     </div>

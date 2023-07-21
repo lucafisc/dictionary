@@ -28,7 +28,7 @@ export default function UserBtn({ user, auth }: UserProps): JSX.Element {
         <div ref={ref} className="relative mr-4">
           <button onClick={toggleMenu} className="flex items-center">
             <img
-              src={"https://placehold.co/50"}
+              src={user.photoURL || "https://placehold.co/50"}
               alt="User Avatar"
               className="w-8 h-8 rounded-full mr-2"
             />

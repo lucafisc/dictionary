@@ -52,15 +52,15 @@ const FavoriteWordsList: React.FC<FavoriteWordsListProps> = ({ auth, db }) => {
   }, [user, auth, db]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="dark:text-white ">Loading...</div>;
   }
 
   if (!user) {
-    return <div>Please sign in to see your favorite words.</div>;
+    return <div className="dark:text-white ">Please sign in to see your favorite words.</div>;
   }
 
   if (favoriteWords.length === 0) {
-    return <div>No favorite words yet. Start adding some!</div>;
+    return <div className="dark:text-white ">No favorite words yet. Start adding some!</div>;
   }
 
   return (

@@ -5,7 +5,8 @@ import Search from "./components/Search";
 import WordPage from "./components/WordPage";
 import Header from "./components/Header";
 import ErrorPage from "./components/ErrorPage";
-
+import { FirebaseConfig } from "./FirebaseConfig";
+  
 const BlankComponent = () => null;
 
 function App() {

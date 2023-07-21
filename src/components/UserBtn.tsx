@@ -39,7 +39,7 @@ export default function UserBtn({ user, auth }: UserProps): JSX.Element {
             } absolute z-10 mt-1 -translate-x-12 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600`}
           >
             <button
-              className="w-20 flex items-center cursor-pointer p-2"
+              className="w-20 flex items-center cursor-pointer p-2 dark:text-white"
               onClick={() => handleClick()}
             >
               Sing out

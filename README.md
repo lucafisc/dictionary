@@ -40,12 +40,14 @@ The goal of this project was to build a dictionary web app that allows users to 
 - Switch between serif, sans serif, and monospace fonts
 - Switch between light and dark themes
 - View the optimal layout for the interface depending on their device's screen size
+- Log in and save favorite words
 
 ### **Built with**
 
 - React
 - Typescript
 - Tailwind CSS
+- Firebase Auth and Firestore
 
 ### **Author**
 

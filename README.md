@@ -4,7 +4,7 @@
 
 
 <p align="center">
- <img alt="Version" src="https://i.imgur.com/IwcqWB8.png" width="500"/>
+ <img alt="Version" src="https://i.imgur.com/QiI0tk5.png" width="500"/>
 </p>
 
 

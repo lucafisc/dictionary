@@ -8,7 +8,7 @@
 </p>
 
 
-> A dictionary built using React, Typescript and Tailwind CSS
+> A dictionary built using React, Typescript and Tailwind CSS. User authentication and database by Firebase
 > 
 > ### 🏠 [Demo link](https://lucafisc.github.io/dictionary/)
 
